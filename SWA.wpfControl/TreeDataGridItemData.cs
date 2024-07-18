@@ -14,7 +14,7 @@ namespace SWA.wpfControl;
 
 public class TreeDataGridItemData : ViewModelBase
 {
-  #region 属性 IsExpanded
+  #region Properties
   private bool _IsExpanded = true;
   public bool IsExpanded
   {
@@ -28,15 +28,11 @@ public class TreeDataGridItemData : ViewModelBase
       {
         return;
       }
-      //_IsExpanded = value;
-      //RaisePropertyChanged("IsExpanded");
       SetProperty(ref _IsExpanded, value);
       SetItemsVisible(value);
     }
   }
-  #endregion
 
-  #region 属性 Level
   private int _Level = 0;
   public int Level
   {
@@ -46,46 +42,10 @@ public class TreeDataGridItemData : ViewModelBase
     }
     set
     {
-      //_Level = value;
-      //RaisePropertyChanged("Level");
       SetProperty(ref _Level, value);
     }
   }
-  #endregion
 
-  #region 属性 IsFirstItem
-  //private bool _IsFirstItem = true;
-  //public bool IsFirstItem
-  //{
-  //  get
-  //  {
-  //    return _IsFirstItem;
-  //  }
-  //  set
-  //  {
-  //    _IsFirstItem = value;
-  //    RaisePropertyChanged("IsFirstItem");
-  //  }
-  //}
-  #endregion
-
-  #region 属性 IsLastItem
-  //private bool _IsLastItem = false;
-  //public bool IsLastItem
-  //{
-  //  get
-  //  {
-  //    return _IsLastItem;
-  //  }
-  //  set
-  //  {
-  //    _IsLastItem = value;
-  //    RaisePropertyChanged("IsLastItem");
-  //  }
-  //}
-  #endregion
-
-  #region 属性 Data
   private object _Data = null;
   public object Data
   {
@@ -95,14 +55,10 @@ public class TreeDataGridItemData : ViewModelBase
     }
     set
     {
-      //_Data = value;
-      //RaisePropertyChanged("Data");
       SetProperty(ref _Data, value);
     }
   }
-  #endregion
 
-  #region 属性 ParentItem
   private TreeDataGridItemData _ParentItem = null;
   public TreeDataGridItemData ParentItem
   {
@@ -112,14 +68,10 @@ public class TreeDataGridItemData : ViewModelBase
     }
     set
     {
-      //_ParentItem = value;
-      //RaisePropertyChanged("ParentItem");
       SetProperty(ref _ParentItem, value);
     }
   }
-  #endregion
 
-  #region 属性 ParentItems
   private List<TreeDataGridItemData> _ParentItems = null;
   public List<TreeDataGridItemData> ParentItems
   {
@@ -133,14 +85,10 @@ public class TreeDataGridItemData : ViewModelBase
     }
     set
     {
-      //_ParentItems = value;
-      //RaisePropertyChanged("ParentItems");
       SetProperty(ref _ParentItems, value);
     }
   }
-  #endregion
 
-  #region 属性 Items
   private List<TreeDataGridItemData> _Items = null;
   public List<TreeDataGridItemData> Items
   {
@@ -154,25 +102,10 @@ public class TreeDataGridItemData : ViewModelBase
     }
     set
     {
-      //_Items = value;
-      //RaisePropertyChanged("Items");
       SetProperty(ref _Items, value);
     }
   }
-  #endregion
 
-  #region 属性 HasItems
-  //public bool HasItems
-  //{
-  //  get
-  //  {
-  //    return Items.Count > 0;
-  //  }
-  //}
-  #endregion
-
-  #region ToggleVisibility
-  //private Visibility _visibility = Visibility.Collapsed;
   public Visibility ToggleVisibility
   {
     get
@@ -180,30 +113,7 @@ public class TreeDataGridItemData : ViewModelBase
       return Items.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
     }
   }
-  #endregion
 
-  #region 属性 IconType
-  //private int _IconType = 0;
-  //public int IconType
-  //{
-  //  get
-  //  {
-  //    return _IconType;
-  //  }
-  //  set
-  //  {
-  //    if (_IconType == value)
-  //    {
-  //      return;
-  //    }
-
-  //    _IconType = value;
-  //    RaisePropertyChanged("IconType");
-  //  }
-  //}
-  #endregion
-
-  #region 属性 IsVisible
   private bool _IsVisible = true;
   public bool IsVisible
   {
@@ -217,34 +127,11 @@ public class TreeDataGridItemData : ViewModelBase
       {
         return;
       }
-      //_IsVisible = value;
-      //if(_IsVisible) 
-      //{
-      //  TreeLineHightForHidden = DefaultTreeLineHightForHidden;
-      //}
-      //else
-      //{
-      //  TreeLineHightForHidden = 0;
-      //}
-      //RaisePropertyChanged("IsVisible");
+
       SetProperty(ref _IsVisible, value);
       SetItemsVisible(value);
     }
   }
-  #endregion
-
-  #region TreeLineHightForHidden
-  //const double DefaultTreeLineHightForHidden = 30;
-  //private double _treeLineHightForHidden = DefaultTreeLineHightForHidden;
-  //public double TreeLineHightForHidden
-  //{
-  //  get => _treeLineHightForHidden;
-  //  private set
-  //  {
-  //    _treeLineHightForHidden = value;
-  //    RaisePropertyChanged("TreeLineHightForHidden");
-  //  }
-  //}
   #endregion
 
   private void SetItemsVisible(bool visible)
@@ -258,25 +145,6 @@ public class TreeDataGridItemData : ViewModelBase
       Items.ForEach(p => p.IsVisible = true);
     }
   }
-
-  //int GetIconType()
-  //{
-  //  if (HasItems)
-  //  {
-  //    return IsExpanded ? 2 : 1;
-  //  }
-  //  else
-  //    return 0;
-  //}
-
-  //protected override void RaisePropertyChanged(string name)
-  //{
-  //  base.RaisePropertyChanged(name);
-  //  //if (!name.Equals("IconType"))
-  //  //{
-  //  //  IconType = GetIconType();
-  //  //}
-  //}
 }
 
 public class TreeItemDataCollection : ObservableCollection<TreeDataGridItemData>
@@ -287,7 +155,7 @@ public class TreeItemDataCollection : ObservableCollection<TreeDataGridItemData>
 
   List<TreeDataGridItemData> _RootItems = new List<TreeDataGridItemData>();
 
-  #region 属性 UseTree
+  #region UseTree
   private bool _UseTree = false;
   public bool UseTree
   {
@@ -310,7 +178,6 @@ public class TreeItemDataCollection : ObservableCollection<TreeDataGridItemData>
     {
       list.CollectionChanged += List_CollectionChanged;
     }
-    //UseTree = useTree;
     ResetItems();
   }
 
@@ -366,8 +233,6 @@ public class TreeItemDataCollection : ObservableCollection<TreeDataGridItemData>
     {
       var item = items[i];
       item.IsExpanded = false;
-      //item.IsFirstItem = i == 0;
-      //item.IsLastItem = i == items.Count - 1;
     }
   }
 
@@ -423,21 +288,6 @@ public class TreeItemDataCollection : ObservableCollection<TreeDataGridItemData>
 
 public class TreeItemDataConverter : IValueConverter
 {
-  #region 属性 UseTree
-  //private bool _UseTree = false;
-  //public bool UseTree
-  //{
-  //  get
-  //  {
-  //    return _UseTree;
-  //  }
-  //  set
-  //  {
-  //    _UseTree = value;
-  //  }
-  //}
-  #endregion
-
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
   {
     if (value == null || parameter == null)

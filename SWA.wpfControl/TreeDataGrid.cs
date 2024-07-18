@@ -42,11 +42,22 @@ namespace SWA.wpfControl
   ///     <MyNamespace:CustomControl1/>
   ///
   /// </summary>
-  public class TreeDataGrid : Control
+  public class TreeDataGrid : DataGrid
   {
-    static TreeDataGrid()
+    //static TreeDataGrid()
+    //{
+    //  DefaultStyleKeyProperty.OverrideMetadata(typeof(TreeDataGrid), new FrameworkPropertyMetadata(typeof(TreeDataGrid)));
+    //}
+
+    protected override DependencyObject GetContainerForItemOverride()
     {
-      DefaultStyleKeyProperty.OverrideMetadata(typeof(TreeDataGrid), new FrameworkPropertyMetadata(typeof(TreeDataGrid)));
+      //return new TreeDataGridRow();
+      return new DataGridRow();
+    }
+
+    protected override bool IsItemItsOwnContainerOverride(object item)
+    {
+      return item is DataGridRow;
     }
   }
 
